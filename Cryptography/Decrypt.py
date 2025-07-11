@@ -1,6 +1,6 @@
 from cryptography.fernet import Fernet
 
-key = "PtQMHHZQGSjv-SwD-fYW4lh45sshpT3lfpxip0KaEU0="
+key = ""
 
 system_information_e = 'e_system.txt'
 clipboard_information_e = 'e_clipboard.txt'
