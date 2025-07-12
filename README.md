@@ -99,7 +99,7 @@ KeyLogger/
 ├── keylogger.py       # Core logic for keylogging
 ├── log.txt            # File where keystrokes are stored
 ├── README.md          # Project documentation
-└── requirements.txt   # Python dependencies (pynput)
+
 ```
 
 ---
