@@ -1,166 +1,61 @@
-# KeyLogger ![License](https://img.shields.io/badge/license-MIT-blue.svg) ![Python](https://img.shields.io/badge/python-3.6%2B-brightgreen) ![Status](https://img.shields.io/badge/status-active-success)
+n
+# KeyLogger
 
-> **DISCLAIMER:** This tool is for educational use only. Misuse of this software can lead to legal consequences. Do not use this on devices you do not own or without proper authorization.
+> A Python-based keylogger that captures keystrokes, system information, and screenshots, and sends them via email.
 
----
+[![License: Not specified](https://img.shields.io/badge/License-Not%20specified-yellow.svg)](https://github.com/TheGodAnnihilator/KeyLogger)
+[![GitHub stars](https://img.shields.io/github/stars/TheGodAnnihilator/KeyLogger?style=social)](https://github.com/TheGodAnnihilator/KeyLogger)
 
-## 📚 Table of Contents
+## Description
 
-- [📌 Overview](#-overview)
-- [✨ Features](#-features)
-- [🧠 How It Works](#-how-it-works)
-- [🚀 Getting Started](#-getting-started)
-  - [✅ Prerequisites](#-prerequisites)
-  - [📦 Installation](#-installation)
-  - [▶️ Usage](#️-usage)
-  - [🛑 Stopping](#-stopping)
-- [🗂️ File Structure](#️-file-structure)
-- [🧩 Project Roadmap](#-project-roadmap)
-- [🛠️ Customization Ideas](#️-customization-ideas)
-- [🧪 Sample Output](#-sample-output)
-- [⚖️ Disclaimer](#️-disclaimer)
-- [👨‍💻 Author](#-author)
-- [📄 License](#-license)
+This keylogger is designed to monitor keyboard input, gather system information, and capture screenshots. It saves keystrokes to a log file, collects details about the host machine (including hostname, IP address, operating system, and processor), and takes screenshots of the active screen. All this information is then sent to a specified email address. The collected data can be optionally encrypted before being emailed. Finally, the keylogger attempts to remove the original log files to conceal its activity.
 
----
+## ✨ Key Features
 
-## 📌 Overview
+- **Keystroke Logging:** Records all keystrokes and saves them to a text file (`key_log.txt`).
+- **System Information Gathering:** Collects and saves system information such as hostname, IP address, operating system, and processor details to a text file (`syseminfo.txt`).
+- **Screenshot Capture:** Takes screenshots of the active screen and saves them as a PNG image (`screenshot.png`).
+- **Email Reporting:** Sends collected keystrokes, system information, and screenshots to a predefined email address.
+- **File Encryption:** Encrypts the keylog, system information, and clipboard data using Fernet encryption before emailing.
+- **Data Removal:** Attempts to delete the log files and screenshots after sending them via email to remove traces of activity.
 
-This project is a simple keylogger implemented in Python using the `pynput` library. It captures all keystrokes pressed on the keyboard and stores them in a log file for later analysis. 
+## 🛠️ Technology Stack
 
-This project is useful for:
-- Monitoring your own typing activity
-- Developing security and monitoring tools
-- Understanding how key event capturing works in Python
-
-It **does not** provide advanced hiding techniques, so it's best used in controlled or experimental environments.
-
----
-
-## ✨ Features
-
-- ✔️ Real-time keystroke capture
-- ✔️ Lightweight and minimal
-- ✔️ Logs stored in plain text format
-- ✔️ Symbolic representation of special keys
-- ✔️ Easy to understand and extend
-- ✔️ Platform-independent (Windows/Linux/macOS)
-
----
-
-## 🧠 How It Works
-
-The tool uses `pynput.keyboard.Listener` to hook into global keyboard events. Whenever a key is pressed:
-- It's captured in the `on_press()` callback
-- Keys are formatted appropriately
-- Appends each keystroke with timestamp into `log.txt`
-
-This continues until the script is manually stopped.
-
----
+- **Frontend:** N/A
+- **Backend:** Python
+- **Database:** N/A
 
 ## 🚀 Getting Started
 
-### ✅ Prerequisites
+### Prerequisites
 
-- Python 3.6 or higher
-- OS: Windows / Linux / macOS
+- Python 3.6+ (Required for libraries such as `pynput`, `cryptography`, `scipy`, and `sounddevice`)
+- `pip` (Python package installer)
 
-### 📦 Installation
+### Installation
 
-Clone this repository and install dependencies:
-
-```bash
-git clone https://github.com/TheGodAnnihilator/KeyLogger.git
-cd KeyLogger
-pip install pynput
+1.  Clone the repository:
+    ```sh
+    git clone https://github.com/TheGodAnnihilator/KeyLogger
+    ```
+2.  Navigate to the project directory:
+    ```sh
+    cd KeyLogger
+    ```
+3.  Install dependencies:
+    ```sh
+    pip install pynput cryptography Pillow requests scipy sounddevice
+    ```
+                
+### Running the Project
+```sh
+python main.py
 ```
 
-### ▶️ Usage
+## 🤝 Contributing
 
-To start logging:
+Contributions are welcome! Please check the [issues page](https://github.com/TheGodAnnihilator/KeyLogger/issues) for ways to contribute.
 
-```bash
-python keylogger.py
-```
+## 📝 License
 
-This will create a `log.txt` file where all keystrokes will be stored.
-
-### 🛑 Stopping
-
-Use `Ctrl+C` in the terminal to stop logging, or terminate the process using Task Manager / Activity Monitor.
-
----
-
-## 🗂️ File Structure
-
-```
-KeyLogger/
-├── keylogger.py       # Core logic for keylogging
-├── log.txt            # File where keystrokes are stored
-├── README.md          # Project documentation
-
-```
-
----
-
-## 🧩 Project Roadmap
-
-| Version | Feature/Task                            | Status       |
-|---------|------------------------------------------|--------------|
-| 1.0     | Basic keylogger with local logging       | ✅ Completed |
-| 1.1     | Timestamped entries                      | ✅ Completed |
-| 1.2     | Session-wise log files                   | 🔜 Planned   |
-| 1.3     | Encrypt logs                             | 🔜 Planned   |
-| 1.4     | Auto-start on system boot (Windows)      | 🔜 Planned   |
-| 2.0     | Send logs via email                      | 🔜 Planned   |
-
----
-
-## 🛠️ Customization Ideas
-
-You can extend the project by adding:
-- 🔒 Encrypted log files using AES
-- 📩 Email/SMS log delivery
-- 🖥️ Logging current window title
-- 🧑‍💻 GUI toggle for starting/stopping keylogger
-- 📊 Dashboard to view analytics of typed keys
-- 🧹 Auto-delete logs older than N days
-
----
-
-## 🧪 Sample Output
-
-```
-2025-07-11 09:23:14 - Key pressed: a
-2025-07-11 09:23:14 - Key pressed: b
-2025-07-11 09:23:15 - Key pressed: Key.space
-2025-07-11 09:23:15 - Key pressed: c
-2025-07-11 09:23:16 - Key pressed: Key.enter
-```
-
-The log is plain and human-readable, with timestamps.
-
----
-
-## ⚖️ Disclaimer
-
-> This software is intended **only for educational and ethical testing purposes**.  
-> You must **not** use this tool on machines you do not own or without the user's consent.  
-> The creator of this software is **not responsible for any misuse or damages** caused by this code.
-
----
-
-## 👨‍💻 Author
-
-- **TheGodAnnihilator**  
-GitHub: [@TheGodAnnihilator](https://github.com/TheGodAnnihilator)
-
----
-
-## 📄 License
-
-This project is licensed under the [MIT License](LICENSE).  
-You are free to use, modify, and distribute it—while giving proper attribution.
-
----
+This project is licensed under the **Not specified**.
